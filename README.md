@@ -1,7 +1,8 @@
 # esp32_usb_midi
 ESP32 USB MIDI add-on for arduino synthesizer projects
 
-The project can be seen in my video https://youtu.be/Mt3rT-SVZww
+- video presentation of the initial state of this project https://youtu.be/Mt3rT-SVZww
+- little quick start guide to get started with arduino synthesizer / music projects: https://youtu.be/ZNxGCB-d68g
 
 This project has the purpose to combine different MIDI interfaces, especially USB-MIDI
 You can forward MIDI from USB to DIN for example.
