@@ -1,4 +1,36 @@
 /*
+ * The GNU GENERAL PUBLIC LICENSE (GNU GPLv3)
+ *
+ * Copyright (c) 2021 Marcel Licence
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Dieses Programm ist Freie Software: Sie können es unter den Bedingungen
+ * der GNU General Public License, wie von der Free Software Foundation,
+ * Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren
+ * veröffentlichten Version, weiter verteilen und/oder modifizieren.
+ *
+ * Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch
+ * OHNE JEDE GEWÄHR,; sogar ohne die implizite
+ * Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK.
+ * Siehe die GNU General Public License für weitere Einzelheiten.
+ *
+ * Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
+ * Programm erhalten haben. Wenn nicht, siehe <https://www.gnu.org/licenses/>.
+ */
+
+/*
  * This module is run adc with a multiplexer
  * tested with ESP32 Audio Kit V2.2
  * Only tested with 8 inputs
@@ -48,8 +80,9 @@ void AdcMul_Init(void)
 
     analogReadResolution(10);
     analogSetAttenuation(ADC_11db);
-
+#if 0
     analogSetCycles(1);
+#endif
     analogSetClockDiv(1);
 
     adcAttachPin(ADC_MUL_SIG_PIN);
@@ -89,6 +122,7 @@ void AdcMul_Process(void)
         delay(1);
 
         readAccu = 0;
+#if 0
         adcStart(ADC_MUL_SIG_PIN);
         for (int i = 0 ; i < ADC_OVERSAMPLING; i++)
         {
@@ -100,6 +134,12 @@ void AdcMul_Process(void)
             }
         }
         adcEnd(ADC_MUL_SIG_PIN);
+#else
+        for (int i = 0 ; i < ADC_OVERSAMPLING; i++)
+        {
+            readAccu += analogRead(ADC_MUL_SIG_PIN);
+        }
+#endif
 
 #ifdef ADC_DYNAMIC_RANGE
         if (readAccu < adcMin - 0.5f)
@@ -169,7 +209,7 @@ void AdcMul_Process(void)
                     }
                 }
 #ifdef ADC_DEBUG_CHANNEL0_DATA
-                switch (j == 0)
+                if (j == 0)
                 {
                     float adcValFrac = (adcChannelValue[j] * 127.999) - midiValueU7;
                     Serial.printf("adcChannelValue[j]: %f -> %0.3f -> %0.3f-> %d, %0.3f\n", readAccu, readValF, adcChannelValue[j], midiValueU7, adcValFrac);
