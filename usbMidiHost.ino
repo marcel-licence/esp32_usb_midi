@@ -1,7 +1,5 @@
 /*
- * The GNU GENERAL PUBLIC LICENSE (GNU GPLv3)
- *
- * Copyright (c) 2021 Marcel Licence
+ * Copyright (c) 2022 Marcel Licence
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,20 +28,28 @@
  * Programm erhalten haben. Wenn nicht, siehe <https://www.gnu.org/licenses/>.
  */
 
-/*
- * usbMidiHost.ino
+/**
+ * @file usbMidiHost.ino
+ * @author Marcel Licence
+ * @date 18.05.2021
  *
- * This file includes the implementation for MIDI in/out
+ * @brief This file includes the implementation for MIDI in/out
  * via the USB Host module using the "Revision 2.0 of MAX3421E-based USB Host Shield Library"
- *
- *  Created on: 18.05.2021
- *      Author: Marcel Licence
  *
  * You will require to use following library:
  * https://github.com/felis/USB_Host_Shield_2.0
  *
  * Please check out USB-MIDI dump utility from Yuuichi Akagawa
+ *
+ * @see Mini USB host shield with ESP32 as MIDI interface (MAX3421E add-on for arduino synthesizer projects) - https://youtu.be/Mt3rT-SVZww
+ * @see https://github.com/felis/USB_Host_Shield_2.0/blob/master/examples/USBH_MIDI/USBH_MIDI_dump/USBH_MIDI_dump.ino
  */
+
+
+#ifdef __CDT_PARSER__
+#include <cdt.h>
+#endif
+
 
 /*
  * Connections:
@@ -54,7 +60,7 @@
  *  MOSI: IO23
  */
 
-#include <usbh_midi.h>
+#include <usbh_midi.h> /* requires library USB_Host_Shield_2.0 from https://github.com/felis/USB_Host_Shield_2.0 */
 #include <usbhub.h>
 #include <SPI.h>
 
@@ -260,6 +266,8 @@ uint8_t MIDI_handleMsg(uint8_t *data, uint16_t len, uint8_t cable)
         Serial.printf("0x%02x ", data[i]);
     }
     Serial.printf("\n");
+
+    return 0;
 }
 
 /* process data now */
