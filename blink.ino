@@ -1,7 +1,7 @@
 /*
  * The GNU GENERAL PUBLIC LICENSE (GNU GPLv3)
  *
- * Copyright (c) 2021 Marcel Licence
+ * Copyright (c) 2023 Marcel Licence
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,11 +49,11 @@ void Blink_Process(void)
     static bool ledOn = true;
     if (ledOn)
     {
-        digitalWrite(LED_PIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+        digitalWrite(LED_PIN, HIGH); // turn the LED on (HIGH is the voltage level)
     }
     else
     {
-        digitalWrite(LED_PIN, LOW);    // turn the LED off
+        digitalWrite(LED_PIN, LOW); // turn the LED off
     }
     ledOn = !ledOn;
 }

@@ -1,7 +1,7 @@
 /*
  * The GNU GENERAL PUBLIC LICENSE (GNU GPLv3)
  *
- * Copyright (c) 2021 Marcel Licence
+ * Copyright (c) 2023 Marcel Licence
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@
 #include <WiFi.h>
 
 /* this is used to add a task to core 0 */
-TaskHandle_t  Core0TaskHnd ;
+TaskHandle_t Core0TaskHnd ;
 
 
 void setup()

@@ -1,7 +1,7 @@
 /*
  * The GNU GENERAL PUBLIC LICENSE (GNU GPLv3)
  *
- * Copyright (c) 2021 Marcel Licence
+ * Copyright (c) 2023 Marcel Licence
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -178,7 +178,7 @@ void Midi_Setup()
 #else
     Serial2.begin(31250, SERIAL_8N1, RXD2);
 #endif
-    pinMode(RXD2, INPUT_PULLUP);  /* 25: GPIO 16, u2_RXD */
+    pinMode(RXD2, INPUT_PULLUP); /* 25: GPIO 16, u2_RXD */
 }
 
 void Midi_CheckSerial2(void)

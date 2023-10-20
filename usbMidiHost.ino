@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Marcel Licence
+ * Copyright (c) 2023 Marcel Licence
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@
 #include <SPI.h>
 
 USB Usb;
-USBH_MIDI  Midi(&Usb);
+USBH_MIDI Midi(&Usb);
 
 static void UsbMidi_Poll();
 
@@ -117,7 +117,7 @@ void UsbMidi_Loop()
     if (lastState != Usb.getUsbTaskState())
     {
         lastState = Usb.getUsbTaskState();
-        Serial.printf("state: %d\n",  Usb.getUsbTaskState());
+        Serial.printf("state: %d\n", Usb.getUsbTaskState());
         switch (Usb.getUsbTaskState())
         {
         case USB_STATE_DETACHED:
@@ -232,7 +232,7 @@ uint8_t MIDI_handleMsg(uint8_t *data, uint16_t len, uint8_t cable)
     if ((data[0] & 0xF0) == 0xF0)
     {
         /* handle status msg */
-        if (data[0] ==  0xF0)
+        if (data[0] == 0xF0)
         {
             for (int i = 2; i < len; i++)
             {
@@ -287,7 +287,7 @@ void UsbMidi_ProcessSync(void)
 static void UsbMidi_Poll()
 {
     uint8_t bufMidi[MIDI_EVENT_PACKET_SIZE];
-    uint16_t  rcvd;
+    uint16_t rcvd;
 
     memset(bufMidi, 0xCC, sizeof(bufMidi));
 
@@ -298,7 +298,7 @@ static void UsbMidi_Poll()
         Serial.printf("VID: %04x, PID: %04x\n", vid, pid);
     }
 
-    if (Midi.RecvData(&rcvd,  bufMidi) == 0)
+    if (Midi.RecvData(&rcvd, bufMidi) == 0)
     {
         if (rcvd == 0)
         {

@@ -1,7 +1,7 @@
 /*
  * The GNU GENERAL PUBLIC LICENSE (GNU GPLv3)
  *
- * Copyright (c) 2021 Marcel Licence
+ * Copyright (c) 2023 Marcel Licence
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,6 @@
 #define CONFIG_H_
 
 //#define ESP32_AUDIO_KIT
-
 
 
 /* this will force using const velocity for all notes, remove this to get dynamic velocity */
